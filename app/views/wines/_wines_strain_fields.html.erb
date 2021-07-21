@@ -1,0 +1,13 @@
+<div class="nested-fields">
+    <div class="field">
+        <%= f.label :strain_id %>
+        <%= f.select :strain_id, options_from_collection_for_select(@strains, :id, :name)  %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Proportion (%)" %>
+        <%= f.number_field :proportion %>
+    </div>
+
+    <%= link_to_remove_association "remove task", f %>
+</div>   
