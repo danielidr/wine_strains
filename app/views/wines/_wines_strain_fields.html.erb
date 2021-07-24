@@ -6,8 +6,7 @@
 
     <div class="field">
         <%= f.label "Proportion (%)" %>
-        <%= f.number_field :proportion %>
+        <%= f.number_field :proportion, step: 0.1 %>
     </div>
 
     <%= link_to_remove_association "remove task", f %>
-</div>   
