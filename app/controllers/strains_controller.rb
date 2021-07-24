@@ -3,7 +3,7 @@ class StrainsController < ApplicationController
 
   # GET /strains or /strains.json
   def index
-    @strains = Strain.all
+    @strains = Strain.eager_load(:wines)
   end
 
   # GET /strains/1 or /strains/1.json

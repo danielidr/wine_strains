@@ -3,7 +3,7 @@ class WinesController < ApplicationController
 
   # GET /wines or /wines.json
   def index
-    @wines = Wine.all
+    @wines = Wine.eager_load(:strains)
   end
 
   # GET /wines/1 or /wines/1.json
@@ -13,7 +13,7 @@ class WinesController < ApplicationController
   # GET /wines/new
   def new
     @wine = Wine.new
-    @strains = Strain.all
+    @strains = Strain.eager_load(:wines)
     @wine.wines_strains.build
   end
 
@@ -30,6 +30,7 @@ class WinesController < ApplicationController
         format.html { redirect_to @wine, notice: "Wine was successfully created." }
         format.json { render :show, status: :created, location: @wine }
       else
+        @strains = Strain.eager_load(:wines)
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @wine.errors, status: :unprocessable_entity }
       end
