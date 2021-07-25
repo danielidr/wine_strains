@@ -1,16 +1,14 @@
 body {
-  background-color: #fff;
-  color: #333;
-  margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  background-color: #333;
+  font-family: 'Baloo Tammudu 2', sans-serif;
+  color: #fff;
+  font-size: 20px;
+  margin: 0;
   line-height: 18px;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+.formulario {
+  width: 60%;
 }
 
 pre {
@@ -20,20 +18,11 @@ pre {
 }
 
 a {
-  color: #000;
-
+  color: #666;
   &:visited {
     color: #666;
   }
 
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-th {
-  padding-bottom: 5px;
 }
 
 td {
@@ -62,6 +51,7 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  color: #333;
 
   h2 {
     text-align: left;
@@ -73,10 +63,6 @@ div {
     color: #fff;
   }
 
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
 }
 
 label {

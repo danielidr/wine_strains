@@ -1,12 +1,15 @@
-<div class="nested-fields">
-    <div class="field">
-        <%= f.label :strain_id %>
-        <%= f.select :strain_id, options_from_collection_for_select(@strains, :id, :name)  %>
-    </div>
+<div class="nested-fields mb-4">
+    <div class="row">
+        <div class="form-group col-8">
+            <%= f.label :strain_id %>
+            <%= f.select :strain_id, options_from_collection_for_select(@strains, :id, :name), class: "form-control" %>
+        </div>
 
-    <div class="field">
-        <%= f.label "Proportion (%)" %>
-        <%= f.number_field :proportion, step: 0.1 %>
+        <div class="form-group col-4">
+            <%= f.label "Proportion (%)" %>
+            <%= f.number_field :proportion, step: 0.1, class: "form-control" %>
+        </div>
     </div>
 
     <%= link_to_remove_association "remove task", f %>
+</div>

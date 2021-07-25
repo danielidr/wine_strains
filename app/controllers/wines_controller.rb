@@ -19,6 +19,7 @@ class WinesController < ApplicationController
 
   # GET /wines/1/edit
   def edit
+    @strains = Strain.eager_load(:wines)
   end
 
   # POST /wines or /wines.json
