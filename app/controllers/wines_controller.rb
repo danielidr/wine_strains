@@ -26,11 +26,19 @@ class WinesController < ApplicationController
   # POST /wines or /wines.json
   def create
     @wine = Wine.new(wine_params)
+    sum = 0
+    if not @wine.name.blank?
+      @wine.wines_strains.each do |strain|
+        sum = strain.proportion + sum
+      end
+    end
 
     respond_to do |format|
-      if @wine.save
+      if sum <= 100 && @wine.save
         format.html { redirect_to @wine, notice: "Wine was successfully created." }
         format.json { render :show, status: :created, location: @wine }
+      elsif sum > 100
+        format.html { redirect_to new_wine_path, alert: "Wine can only have a total of 100%" }
       else
         @strains = Strain.eager_load(:wines)
         format.html { render :new, status: :unprocessable_entity }
