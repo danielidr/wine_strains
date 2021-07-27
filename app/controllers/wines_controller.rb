@@ -13,14 +13,24 @@ class WinesController < ApplicationController
 
   # GET /wines/new
   def new
-    @wine = Wine.new
-    @strains = Strain.eager_load(:wines)
-    @wine.wines_strains.build
+    if current_user.admin?
+      @wine = Wine.new
+      @strains = Strain.eager_load(:wines)
+      @wine.wines_strains.build
+    else
+      flash[:alert] = "You must be an admin in to access this section"
+      redirect_to root_path
+    end
   end
 
   # GET /wines/1/edit
   def edit
-    @strains = Strain.eager_load(:wines)
+    if current_user.admin?
+      @strains = Strain.eager_load(:wines)
+    else
+      flash[:alert] = "You must be an admin in to access this section"
+      redirect_to root_path
+    end
   end
 
   # POST /wines or /wines.json
@@ -62,10 +72,15 @@ class WinesController < ApplicationController
 
   # DELETE /wines/1 or /wines/1.json
   def destroy
-    @wine.destroy
-    respond_to do |format|
-      format.html { redirect_to wines_url, notice: "Wine was successfully destroyed." }
-      format.json { head :no_content }
+    if current_user.admin?
+      @wine.destroy
+      respond_to do |format|
+        format.html { redirect_to wines_url, notice: "Wine was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      flash[:alert] = "You must be an admin to delete a wine"
+      redirect_to root_path
     end
   end
 
