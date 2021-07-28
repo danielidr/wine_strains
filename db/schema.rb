@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_020612) do
+ActiveRecord::Schema.define(version: 2021_07_28_220931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,15 @@ ActiveRecord::Schema.define(version: 2021_07_28_020612) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "magazines_oenologists", id: false, force: :cascade do |t|
-    t.bigint "oenologist_id", null: false
-    t.bigint "magazine_id", null: false
-    t.index ["magazine_id", "oenologist_id"], name: "index_magazines_oenologists_on_magazine_id_and_oenologist_id"
-    t.index ["oenologist_id", "magazine_id"], name: "index_magazines_oenologists_on_oenologist_id_and_magazine_id"
+  create_table "magazines_positions", force: :cascade do |t|
+    t.bigint "magazine_id"
+    t.bigint "position_id"
+    t.bigint "oenologist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["magazine_id"], name: "index_magazines_positions_on_magazine_id"
+    t.index ["oenologist_id"], name: "index_magazines_positions_on_oenologist_id"
+    t.index ["position_id"], name: "index_magazines_positions_on_position_id"
   end
 
   create_table "oenologists", force: :cascade do |t|
@@ -34,13 +38,6 @@ ActiveRecord::Schema.define(version: 2021_07_28_020612) do
     t.string "nationality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "oenologists_positions", id: false, force: :cascade do |t|
-    t.bigint "oenologist_id", null: false
-    t.bigint "position_id", null: false
-    t.index ["oenologist_id", "position_id"], name: "index_oenologists_positions_on_oenologist_id_and_position_id"
-    t.index ["position_id", "oenologist_id"], name: "index_oenologists_positions_on_position_id_and_oenologist_id"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -94,6 +91,9 @@ ActiveRecord::Schema.define(version: 2021_07_28_020612) do
     t.index ["wine_id"], name: "index_wines_strains_on_wine_id"
   end
 
+  add_foreign_key "magazines_positions", "magazines"
+  add_foreign_key "magazines_positions", "oenologists"
+  add_foreign_key "magazines_positions", "positions"
   add_foreign_key "wines_scores", "oenologists"
   add_foreign_key "wines_scores", "wines"
   add_foreign_key "wines_strains", "strains"
