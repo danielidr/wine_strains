@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_014033) do
+ActiveRecord::Schema.define(version: 2021_07_28_020612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "magazines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "magazines_oenologists", id: false, force: :cascade do |t|
+    t.bigint "oenologist_id", null: false
+    t.bigint "magazine_id", null: false
+    t.index ["magazine_id", "oenologist_id"], name: "index_magazines_oenologists_on_magazine_id_and_oenologist_id"
+    t.index ["oenologist_id", "magazine_id"], name: "index_magazines_oenologists_on_oenologist_id_and_magazine_id"
+  end
 
   create_table "oenologists", force: :cascade do |t|
     t.string "name"
