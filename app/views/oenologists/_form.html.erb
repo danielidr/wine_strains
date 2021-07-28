@@ -1,3 +1,4 @@
+<div class="container justify-content-center formulario mt-4">
 <%= form_with(model: oenologist, local: true) do |form| %>
   <% if oenologist.errors.any? %>
     <div id="error_explanation">
@@ -11,22 +12,27 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :age %>
-    <%= form.number_field :age %>
+    <%= form.number_field :age, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :nationality %>
-    <%= form.text_field :nationality %>
+    <%= form.text_field :nationality, class: "form-control" %>
+  </div>
+
+  <div class="links">
+    <%= link_to_add_association 'Add positions', form, :positions %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create", class: "boton pt-2 float-right" %>
   </div>
 <% end %>
+</div>

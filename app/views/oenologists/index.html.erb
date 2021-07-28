@@ -2,12 +2,14 @@
 
 <h1>Oenologists</h1>
 
-<table>
+<table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Nationality</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Nationality</th>
+      <th scope="col">Magazines</th>
+      <th scope="col">Positions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +20,16 @@
         <td><%= oenologist.name %></td>
         <td><%= oenologist.age %></td>
         <td><%= oenologist.nationality %></td>
+        <td>
+          <% oenologist.magazines.each do |mg| %>
+            <%= mg.name %><br>
+          <% end %>
+        </td>
+        <td>
+          <% oenologist.positions.each do |p| %>
+            <%= p.name %><br>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', oenologist %></td>
         <td><%= link_to 'Edit', edit_oenologist_path(oenologist) %></td>
         <td><%= link_to 'Destroy', oenologist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
