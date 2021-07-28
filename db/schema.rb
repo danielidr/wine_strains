@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_011827) do
+ActiveRecord::Schema.define(version: 2021_07_28_014033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 2021_07_28_011827) do
     t.string "name"
     t.integer "age"
     t.string "nationality"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "oenologists_positions", id: false, force: :cascade do |t|
+    t.bigint "oenologist_id", null: false
+    t.bigint "position_id", null: false
+    t.index ["oenologist_id", "position_id"], name: "index_oenologists_positions_on_oenologist_id_and_position_id"
+    t.index ["position_id", "oenologist_id"], name: "index_oenologists_positions_on_position_id_and_oenologist_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
