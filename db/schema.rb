@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_220931) do
+ActiveRecord::Schema.define(version: 2021_07_29_035307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,25 +23,20 @@ ActiveRecord::Schema.define(version: 2021_07_28_220931) do
 
   create_table "magazines_positions", force: :cascade do |t|
     t.bigint "magazine_id"
-    t.bigint "position_id"
     t.bigint "oenologist_id"
+    t.boolean "editor", default: false
+    t.boolean "writer", default: false
+    t.boolean "reviewer", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["magazine_id"], name: "index_magazines_positions_on_magazine_id"
     t.index ["oenologist_id"], name: "index_magazines_positions_on_oenologist_id"
-    t.index ["position_id"], name: "index_magazines_positions_on_position_id"
   end
 
   create_table "oenologists", force: :cascade do |t|
     t.string "name"
     t.integer "age"
     t.string "nationality"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "positions", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_07_28_220931) do
 
   add_foreign_key "magazines_positions", "magazines"
   add_foreign_key "magazines_positions", "oenologists"
-  add_foreign_key "magazines_positions", "positions"
   add_foreign_key "wines_scores", "oenologists"
   add_foreign_key "wines_scores", "wines"
   add_foreign_key "wines_strains", "strains"

@@ -9,7 +9,6 @@
       <th scope="col">Age</th>
       <th scope="col">Nationality</th>
       <th scope="col">Magazines</th>
-      <th scope="col">Positions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,11 +22,9 @@
         <td>
           <% oenologist.magazines.each do |mg| %>
             <%= mg.name %><br>
-          <% end %>
-        </td>
-        <td>
-          <% oenologist.positions.each do |p| %>
-            <%= p.name %><br>
+            <% if mg.magazines_positions[0].editor? %>
+              editor<br>
+            <% end %>
           <% end %>
         </td>
         <td><%= link_to 'Show', oenologist %></td>

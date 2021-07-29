@@ -2,10 +2,14 @@
 
 one:
   magazine: one
-  position: one
   oenologist: one
+  editor: false
+  writer: false
+  reviewer: false
 
 two:
   magazine: two
-  position: two
   oenologist: two
+  editor: false
+  writer: false
+  reviewer: false
