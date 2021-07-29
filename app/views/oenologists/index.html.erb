@@ -22,9 +22,6 @@
         <td>
           <% oenologist.magazines.each do |mg| %>
             <%= mg.name %><br>
-            <% if mg.magazines_positions[0].editor? %>
-              editor<br>
-            <% end %>
           <% end %>
         </td>
         <td><%= link_to 'Show', oenologist %></td>

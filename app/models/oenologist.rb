@@ -1,6 +1,6 @@
 class Oenologist < ApplicationRecord
-    has_many :wines_score, dependent: :destroy
-    has_many :wines, through: :wines_score
+    has_many :wines_scores, dependent: :destroy
+    has_many :wines, through: :wines_scores
     
     has_many :magazines_positions, dependent: :destroy
     has_many :magazines, through: :magazines_positions

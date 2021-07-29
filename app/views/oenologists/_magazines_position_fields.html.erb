@@ -4,11 +4,15 @@
             <%= f.label :magazine_id %>
             <%= f.select :magazine_id, options_from_collection_for_select(@magazines, :id, :name), class: "form-control" %>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-2">
             <%= f.check_box :editor %>
             <%= f.label :editor %>
+        </div>
+        <div class="form-group col-2">
             <%= f.check_box :writer %>
             <%= f.label :writer %>
+        </div>
+        <div class="form-group col-2">
             <%= f.check_box :reviewer %>
             <%= f.label :reviewer %>
         </div>

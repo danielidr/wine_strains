@@ -7,6 +7,7 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Strains</th>
+      <th scope="col">Scores</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,9 @@
             <%= strain.name %>
             <%= "(#{wine.find_proportion(wine, strain)}%)" %><br>
           <% end %>
+        </td>
+        <td>
+          <%= wine.find_score(wine) %>
         </td>
         <td><%= link_to 'Show', wine %></td>
         <td><%= link_to 'Edit', edit_wine_path(wine) %></td>

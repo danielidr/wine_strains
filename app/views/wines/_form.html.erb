@@ -1,37 +1,36 @@
 <div class="container justify-content-center formulario mt-4">
-<%= form_with(model: wine, local: true) do |form| %>
-  <% if wine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+  <%= form_with(model: wine, local: true) do |form| %>
+    <% if wine.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
 
-      <ul>
-      <% wine.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <ul>
+        <% wine.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group" id="wines_strains">
+      <%= form.fields_for :wines_strains do |f| %>
+        <%= render 'wines_strain_fields', f: f %>
       <% end %>
-      </ul>
+    </div>
+
+    <div class="links">
+      <%= link_to_add_association 'Add strain', form, :wines_strains %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Save Wine", class: "boton pt-2 float-right" %>
     </div>
   <% end %>
-
-
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
-
-  <div class="form-group" id="wines_strains">
-    <%= form.fields_for :wines_strains do |f| %>
-      <%= render 'wines_strain_fields', f: f %>
-    <% end %>
-  </div>
-
-  <div class="links">
-    <%= link_to_add_association 'Add strain', form, :wines_strains %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Create", class: "boton pt-2 float-right" %>
-  </div>
-<% end %>
-
 </div>
 

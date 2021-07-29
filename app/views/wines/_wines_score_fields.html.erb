@@ -1,0 +1,19 @@
+<div class="nested-fields mb-4">
+    <div class="row">
+        <div class="form-group col-8">
+            <%= f.label :oenologist_id %>
+            <%= f.select :oenologist_id, options_from_collection_for_select(@oenologists, :id, :name), class: "form-control" %>
+        </div>
+
+        <div class="form-group col-4">
+            <%= f.label :score %>
+            <%= f.number_field :score, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Save score", class: "boton pt-2 float-right" %>
+    </div>
+
+    <%= link_to_remove_association "remove task", f %>
+</div>

@@ -27,6 +27,8 @@ class WinesController < ApplicationController
   def edit
     if current_user.admin?
       @strains = Strain.eager_load(:wines)
+      @oenologists = Oenologist.eager_load(:wines).order("age ASC")
+      @wine.wines_scores.build
     else
       flash[:alert] = "You must be an admin in to access this section"
       redirect_to root_path
@@ -61,8 +63,7 @@ class WinesController < ApplicationController
   def update
     respond_to do |format|
       if @wine.update(wine_params)
-        format.html { redirect_to @wine, notice: "Wine was successfully updated." }
-        format.json { render :show, status: :ok, location: @wine }
+        format.html { redirect_to edit_wine_path, notice: "Wine was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @wine.errors, status: :unprocessable_entity }
@@ -92,6 +93,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:name, wines_strains_attributes: [:id, :strain_id, :proportion])
+      params.require(:wine).permit(:name, wines_strains_attributes: [:id, :strain_id, :proportion], wines_scores_attributes: [:id, :oenologist_id, :score])
     end
 end
