@@ -4,7 +4,7 @@ class OenologistsController < ApplicationController
 
   # GET /oenologists or /oenologists.json
   def index
-    @oenologists = Oenologist.all
+    @oenologists = Oenologist.eager_load(:magazines)
   end
 
   # GET /oenologists/1 or /oenologists/1.json
@@ -14,7 +14,7 @@ class OenologistsController < ApplicationController
   # GET /oenologists/new
   def new
     @oenologist = Oenologist.new
-    @magazines = Magazine.all
+    @magazines = Magazine.eager_load(:oenologists)
     @oenologist.magazines_positions.build
   end
 

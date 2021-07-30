@@ -7,7 +7,7 @@
 
         <div class="form-group col-4">
             <%= f.label :score %>
-            <%= f.number_field :score, class: "form-control" %>
+            <%= f.number_field :score, in: 1..100, class: "form-control" %>
         </div>
     </div>
 
