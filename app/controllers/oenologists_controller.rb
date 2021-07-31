@@ -20,6 +20,8 @@ class OenologistsController < ApplicationController
 
   # GET /oenologists/1/edit
   def edit
+    @magazines = Magazine.eager_load(:oenologists)
+    @oenologist.magazines_positions.build
   end
 
   # POST /oenologists or /oenologists.json
